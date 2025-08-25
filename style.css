@@ -1,0 +1,83 @@
+body {
+  background-image: url('background.png'); /* i tryed image it is not looking good so i removes */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+.equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Rounded image corners */
+.card-image img {
+  border-radius: 12px 12px 0 0;
+}
+
+/* Content spacing and formatting */
+.card-content {
+  padding: 1rem;
+  line-height: 1.4;
+}
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Provider */
+.provider-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+.provider {
+  text-align: center;
+  width: 60px;
+}
+.provider img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 40%;
+}
+.provider p {
+  font-size: 11px;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100% !important;
+  }
+  .card-image img {
+    height: 200px !important; /* chota image phone pe */
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .provider-container {
+    justify-content: center;
+  }
+}
+.field.has-addons {
+  gap: 10px;
+}
+@media (max-width: 500px) {
+  .provider {
+    width: 50px;
+  }
+  .provider img {
+    width: 35px;
+    height: 35px;
+  }
+  .provider p {
+    font-size: 10px;
+  }
+}
+
