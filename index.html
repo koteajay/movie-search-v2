@@ -15,17 +15,22 @@
     <!-- yeh input -->
     <h1 class="title is-3 mb-4">Search Movies</h1>
     <form id="form">
-      <div class="field has-addons is-justify-content-center is-flex-direction-column-mobile">
-        <div class="control">
-          <input class="input is-info is-medium is-fullwidth" type="text" id="text"
-            placeholder="Search for movies..." />
-        </div>
-        <div class="control">
-          <button class="button is-info is-medium is-fullwidth" id="btn">
-            Search
-          </button>
-        </div>
+      <div class="container" style="max-width: 500px; padding: 0 15px;">
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input 
+          class="input is-info is-rounded is-medium" 
+          type="text" 
+          id="text"
+          placeholder="Search for movies..." />
       </div>
+      <div class="control">
+        <button class="button is-info is-rounded is-medium" id="btn" type="button">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
     </form>
     <!-- movies dikhana -->
     <div id="results" class="columns is-multiline is-centered mt-6">
@@ -39,5 +44,6 @@
   </div>
   <script src="script.js"></script>
 </body>
+
 
 </html>
