@@ -295,14 +295,14 @@ h1.title {
   }
   
   /* Stack search elements on very small screens if needed */
-  .field.has-addons {
+  /* .field.has-addons {
     flex-direction: column !important;
     gap: 10px !important;
   }
   
   .field.has-addons .control {
     width: 100% !important;
-  }
+  } */
 }
 
 /* Loading spinner improvements */
@@ -313,4 +313,29 @@ h1.title {
 /* Smooth transitions for theme switching */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+/* Fix search bar alignment for mobile */
+/* Stop wrapping of search bar and button */
+.field.has-addons {
+  flex-wrap: nowrap !important;
+  justify-content: center; /* center align */
+}
+
+.field.has-addons .control.is-expanded {
+  flex-grow: 1;
+}
+
+.field.has-addons .control.is-expanded input {
+  width: 100%;   /* full width for input */
+}
+
+.field.has-addons .control button {
+  white-space: nowrap; /* text won't break */
+}
+.field.has-addons .input,
+.field.has-addons .button {
+  height: 48px;   /* same height */
+  font-size: 16px !important;
+  padding: 0 1rem;
+  line-height: normal;
 }
