@@ -1,50 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movie Search</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
-</head>
-
-<body>
-  <div class="container has-text-centered mt-6">
-    <!-- yeh input -->
-    <h1 class="title is-3 mb-4">Search Movies</h1>
-    <form id="form">
-      <div class="container" style="max-width: 500px; padding: 0 15px;">
-    <div class="field has-addons">
-      <div class="control is-expanded">
-        <input 
-          class="input is-info is-rounded is-medium" 
-          type="text" 
-          id="text"
-          placeholder="Search for movies..." />
-      </div>
-      <div class="control">
-        <button class="button is-info is-rounded is-medium" id="btn" type="submit">
-          Search
-        </button>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search</title>
+    <!-- Load Bulma FIRST, then your custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+    
+  <body>
+    <div class="is-flex is-justify-content-flex-end p-3">
+      <button id="theme-toggle" class="button is-small is-rounded is-light">
+        🌙
+      </button>
     </div>
+    
+    <div class="container has-text-centered mt-6">
+      <h1 class="title is-3 mb-4">Search Movies</h1>
+      <form id="form">
+        <!-- Remove nested container, use div instead -->
+         
+        <div class="mx-auto" style="max-width: 500px; padding: 0 15px">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input
+                class="input is-info is-rounded is-medium"
+                type="text"
+                id="text"
+                placeholder="Search for movies..."
+              />
+            </div>
+            <div class="control">
+              <button
+                class="button is-info is-rounded is-medium"
+                id="btn"
+                type="submit"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="has-text-centered mt-4 mb-4">
+          <button id="random-btn" class="button is-primary is-rounded">🎲 Get Random Movies</button>
+        </div> -->
+      </form>
+      <div class="has-text-centered mt-4 mb-4">
+  <div class="buttons is-centered">
+    <button id="random-btn" class="button is-primary is-rounded">
+      🎲 Random Movies
+    </button>
+    <button id="trending-btn" class="button is-info is-rounded" onclick="GetTrendingMovies()">
+      🔥 Trending
+    </button>
+    <button id="genre-btn" class="button is-success is-rounded" onclick="GetRandomMoviesByGenre()">
+      🎭 By Genre
+    </button>
   </div>
-    </form>
-    <!-- movies dikhana -->
-    <div id="results" class="columns is-multiline is-centered mt-6">
-      <!-- bulma wala card lecuture number 276 section 26 -->
-      <!-- taking card reference fro bulma -->
+</div>
+      
+      <!-- Remove conflicting classes from results container -->
+      <div id="results" class="mt-6"></div>
+      
+      <div id="loader" class="has-text-centered mt-4" style="display: none">
+        <button class="button is-loading is-info is-medium">Loading...</button>
+      </div>
     </div>
-    <div id="loader" class="has-text-centered mt-4" style="display: none;">
-      <button class="button is-loading is-info is-medium">Loading...</button>
-    </div>
 
-  </div>
-  <script src="script.js"></script>
-</body>
-
-
+    <script src="script.js"></script>
+  </body>
 </html>
-
