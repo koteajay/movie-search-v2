@@ -1,83 +1,316 @@
-body {
-  background-image: url('background.png'); /* i tryed image it is not looking good so i removes */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+/* CSS Variables for theming */
+:root {
+  /* Default: Dark mode */
+  --bg-color: #000;     
+  --card-bg: #111;
+  --text-color: #fff;
+  --text-muted: #aaa;
+  --border-color: #444;
+  --provider-bg: #222;
+}
+
+.light-mode {
+  /* Light mode overrides */
+  --bg-color: #f5f5f5;    
+  --card-bg: #fff;
+  --text-color: #000;
+  --text-muted: #666;
+  --border-color: #ddd;
+  --provider-bg: #f0f0f0;
+}
+
+/* Page full height with theme background */
+html, body {
   min-height: 100vh;
+  background: var(--bg-color);
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Segoe UI', sans-serif;
-  color: #fff;
-}
-.equal-height {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Rounded image corners */
-.card-image img {
-  border-radius: 12px 12px 0 0;
+/* Make containers inherit theme background */
+.container {
+  background: transparent !important;
 }
 
-/* Content spacing and formatting */
-.card-content {
-  padding: 1rem;
-  line-height: 1.4;
+/* Theme Toggle - Fixed positioning issue */
+#theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
-.title {
-  font-size: 1.25rem;
+
+/* Movie Card - Made responsive */
+.movie-card {
+  width: 100%;
+  max-width: 280px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  color: var(--text-color);
+  margin: 0 auto 20px auto;
+  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .movie-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.light-mode .movie-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Info Section */
+.movie-info {
+  padding: 12px;
+  font-size: 14px;
+}
+
+.movie-title {
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  line-height: 1.3;
 }
 
-/* Provider */
-.provider-container {
+.movie-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* Rating Badge */
+.rating {
+  background: #0a84ff;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Provider Logos - Fixed for light mode */
+.provider-logos {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+.provider-logos img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: var(--provider-bg);
+  padding: 2px;
+  transition: background 0.3s ease;
+}
+
+/* No providers message */
+.no-providers {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Input and Button Styling */
+input.input {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  transition: all 0.3s ease;
+}
+
+input.input:focus {
+  border-color: #0a84ff !important;
+  box-shadow: 0 0 0 0.125em rgba(10, 132, 255, 0.25) !important;
+}
+
+input.input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+button.button {
+  background: #0a84ff !important;
+  color: #fff !important;
+  border: none !important;
+  transition: background 0.3s ease;
+}
+
+button.button:hover {
+  background: #0066cc !important;
+}
+
+/* Title color */
+h1.title {
+  color: var(--text-color) !important;
+}
+
+/* Error and no results messages */
+.error-message,
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.error-message {
+  color: #ff3860;
+}
+
+/* Results container */
+#results {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 0.5rem;
-}
-.provider {
-  text-align: center;
-  width: 60px;
-}
-.provider img {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
-  border-radius: 40%;
-}
-.provider p {
-  font-size: 11px;
-  margin-top: 0.2rem;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-  .card {
-    max-width: 100% !important;
+  .movie-card {
+    max-width: 100%;
+    margin: 0 10px 20px 10px;
   }
-  .card-image img {
-    height: 200px !important; /* chota image phone pe */
+  
+  .movie-card img {
+    height: 350px;
   }
-  .title {
-    font-size: 1.1rem;
+  
+  #theme-toggle {
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    min-width: 44px;
+    min-height: 44px;
   }
-  .provider-container {
-    justify-content: center;
+  
+  .movie-info {
+    padding: 12px;
   }
-}
-.field.has-addons {
-  gap: 10px;
-}
-@media (max-width: 500px) {
-  .provider {
-    width: 50px;
+  
+  .movie-title {
+    font-size: 15px;
   }
-  .provider img {
-    width: 35px;
-    height: 35px;
+  
+  /* Better mobile search form */
+  .container {
+    padding: 0 15px !important;
   }
-  .provider p {
-    font-size: 10px;
+  
+  .field.has-addons {
+    display: flex !important;
+  }
+  
+  .control.is-expanded {
+    flex: 1 !important;
+  }
+  
+  input.input {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+  
+  button.button {
+    font-size: 14px !important;
+    padding: 0 1rem !important;
   }
 }
 
+@media (max-width: 480px) {
+  .movie-card {
+    margin: 0 5px 15px 5px;
+  }
+  
+  .movie-card img {
+    height: 300px;
+  }
+  
+  .provider-logos img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  #results {
+    gap: 10px;
+    padding: 15px 5px;
+  }
+  
+  .movie-info {
+    padding: 10px;
+  }
+  
+  .movie-title {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  
+  .movie-meta {
+    font-size: 11px;
+    gap: 6px;
+  }
+  
+  h1.title {
+    font-size: 1.75rem !important;
+  }
+  
+  /* Smaller theme toggle on very small screens */
+  #theme-toggle {
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 1rem;
+  }
+  
+  /* Stack search elements on very small screens if needed */
+  .field.has-addons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .field.has-addons .control {
+    width: 100% !important;
+  }
+}
+
+/* Loading spinner improvements */
+.button.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
